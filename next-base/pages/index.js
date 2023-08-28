@@ -1,3 +1,8 @@
+// 導入模組位置 :
+// next-base -> npm i
+
+// 補充 : 圖庫等等元件不可以放在 pages 資料夾
+// 放在 components 資料夾
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
