@@ -4,7 +4,7 @@ import data from '@/data/products.json';
 
 export default function ProductTable() {
   //要的是products
-  console.log(data.products);
+  // console.log(data.products);
   return (
     <>
       <table>
