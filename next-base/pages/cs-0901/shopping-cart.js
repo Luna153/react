@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+//引入元件useState->宣告物件->輸出預設函式export return->
 const initialProducts = [
   {
     id: 0,
@@ -25,7 +25,7 @@ export default function ShoppingCart() {
   // 只做對應id的某商品count屬性改變
   const updateCount = (products, id, value) => {
     return products.map((v) => {
-      // 展開每個成員慈，如果符合條件(v.id===id)則count:v.count+value
+      // 展開每個成員，如果符合條件(v.id===id)則count:v.count+value
       if (v.id === id) return { ...v, count: v.count + value };
       else return { ...v };
     });
