@@ -1,0 +1,10 @@
+.active {
+  color: green;
+  font-weight: bold;
+}
+
+.completed {
+  text-decoration: line-through;
+  font-style: italic;
+  color: gray;
+}

@@ -5,12 +5,14 @@ import styles from './star.module.css';
 
 export default function Star({ startRating = 0, onRatingChange=()=>{} }) {
   // 這裡的onRatingChange代表: 當評分改變時會回傳參數
-  //click時的評比分數
+  
   // anti-pattern(反樣式): 以props(屬性)作為state(狀態)的初始化值，或稱為derived state(衍生的狀態)
   // https://zh-hant.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
   // https://vhudyma-blog.eu/react-antipatterns-props-in-initial-state/
   // 一般而言，props作為state初始值應避免，除非只需要在內部狀態初始化而已，
   // 而且之後props不會再被更動，或元件不需要再反應其它更動時
+
+  // click時的評比分數
   const [rating, setRating] = useState(0);
   // mouse enter時的評比分數
   const [hoverRating, setHoverRating] = useState(0);
