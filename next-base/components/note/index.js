@@ -34,15 +34,25 @@ export default function NoteIndex() {
     const newTodo = { id: newId, text: text };
     return [newTodo, ...todos];
   };
+
+  //刪除todo list內容
+  const remove = (todos, id) => {
+    //移除指定id
+    return todos.filter((v) => v.id !== id);
+  };
   //   ----------------------------------------
   const handleAdd = (text) => {
     setTodos(add(todos, text));
+  };
+  const handleRomove = (id) => {
+    setTodos(remove(todos, id));
   };
   //   ----------------------------------------
   //顯示內容return
   return (
     <>
       {/* input輸入框 */}
+      {/* Add功能 */}
       <input
         type="text"
         value={inputValue}
@@ -67,6 +77,14 @@ export default function NoteIndex() {
             <li key={v.id}>
               <input type="checkbox" />
               {v.text}
+              {/* Remove功能 */}
+              <button
+                onClick={() => {
+                  handleRomove(v.id)
+                }}
+              >
+                X
+              </button>
             </li>
           );
         })}
