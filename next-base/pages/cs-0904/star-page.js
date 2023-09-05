@@ -1,6 +1,7 @@
+//page
 import { useState } from 'react';
 import Star from '@/components/star';
-// 引入components內的star
+// 引入components內的star(star-page那支)
 
 export default function StarPage() {
   //   const [start, setStart] = useState(3);

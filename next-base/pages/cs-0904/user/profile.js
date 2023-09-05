@@ -14,6 +14,7 @@ export default function Profile() {
       <h1>會員資料頁</h1>
       <p>目前登入狀態: {auth.isAuth ? '登入中' : '未登入'}</p>
       <p>會員姓名: {auth.isAuth ? auth.userData.name : ''}</p>
+      <p>使用者名稱: {auth.isAuth ? auth.userData.usename : ''}</p>
       <p>會員Email: {auth.isAuth ? auth.userData.email : ''}</p>
       <br />
       <a href="/cs-0904/user/login">資料頁a</a>

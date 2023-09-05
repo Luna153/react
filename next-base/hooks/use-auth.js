@@ -1,3 +1,4 @@
+//hooks
 //會員登入
 //引入函式
 import { createContext, useState, useContext } from 'react';
@@ -13,7 +14,7 @@ export function AuthProvider({ children }) {
     userData: {
       id: 0,
       name: '',
-      username: '',
+      usename: '',
       email: '',
     },
   });
