@@ -8,3 +8,12 @@
   font-style: italic;
   color: gray;
 }
+
+.btn-active{
+  background-color: orange;
+  border: 1px solid rgb(107, 91, 62);
+}
+
+.btn-normal{
+  border: 0px;
+}
