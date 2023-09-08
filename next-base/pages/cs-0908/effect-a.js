@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export default function EffectA() {
   const [total, setTotal] = useState(0);
   const [force, setForce] = useState(false);
   //-----------------------------------------------------------
   //   樣式1 : 每次render都會執行一次(很少用到的樣式，禿常出現在自訂勾子裡)
+  //  虛擬DOM->真實DOM
   useEffect(() => {
     console.log('第一種 : 每次render都會執行這裡');
   });
@@ -19,11 +21,42 @@ export default function EffectA() {
   //-----------------------------------------------------------
   //  樣式3 : (使用百分比20~30%) : didMount = didUpdate
   useEffect(() => {
-    console.log(
-      '第三種 : 第一次渲染"後(After)"執行一次 + 每次total有變"後(After)"都會在改變後執行一次'
-    );
+    if (total !== 0) {
+      console.log(
+        '第三種 : 第一次渲染"後(After)"執行一次 + 每次total有變"後(After)"都會在改變後執行一次'
+      );
+    }
   }, [total]);
   //-----------------------------------------------------------
+  //^^^^^這裡放入了total狀態，代表要監聽當total有改變(change)之後，會在執行一次其中程式碼
+  //  樣式4 : (使用百分比5%) : 在元件被移出dom"前(before)"執行一次
+  //  真實DOM->虛擬DOM
+  //  在react中被稱為cleaner(清除函式)，常見於與樣式2成對一起使用的清除(計時器、記憶體)用程式
+  useEffect(() => {
+    return () => {
+      // willUnmount
+      console.log('第四種 : 在元件被移出dom"前(before)"執行一次');
+    };
+  }, []);
+  //-----------------------------------------------------------
+
+  // 整合其他js的程式，組合樣式2+樣式4
+  useEffect(() => {
+    //加入
+    //didMount
+    document.getElementById('my-button').addEventListener('click', function () {
+      alert('this is my button (didMount)');
+    });
+    return () => {
+      // 移除
+      //willUnmount
+      document
+        .getElementById('my-button')
+        .removeEventListener('click', function () {
+          alert('this is my button (willUnmount)');
+        });
+    };
+  }, [total]);
 
   return (
     <>
@@ -46,6 +79,10 @@ export default function EffectA() {
       >
         強制re-render
       </button>
+      <br />
+      <button id="my-button">不可控測試按鈕</button>
+      <br />
+      <Link href="/">到首頁</Link>
     </>
     // note: 兩種情況才會重新渲染=>
     // 1.接收到新的 props
