@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-export default function AddForm({ dispatch }) {
+export default function AddForm({ handleAdd }) {
   //  可控表單元素，宣告專門給文字輸入框使用的狀態
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState('');
 
   return (
     <>
@@ -12,19 +12,18 @@ export default function AddForm({ dispatch }) {
         value={inputValue}
         // 可控表單元件: onChange事件能更動到那個連結的狀態
         onChange={(e) => {
-          setInputValue(e.target.value)
+          setInputValue(e.target.value);
         }}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
             // 新增項目到todos狀態中
-            // handleAdd(e.target.value)
-            dispatch({ type: 'add', payload: { text: e.target.value } })
+            handleAdd(e.target.value);
 
             // 清空文字輸入框
-            setInputValue('')
+            setInputValue('');
           }
         }}
       />
     </>
-  )
+  );
 }
